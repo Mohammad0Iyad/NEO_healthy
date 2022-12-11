@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "6690397156",
+    "project_id": "neo-0-4c500",
+    "storage_bucket": "neo-0-4c500.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6690397156:android:197a88c9aa1182f80bc5f1",
+        "android_client_info": {
+          "package_name": "com.example.neo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6690397156-fr5qm6eq6vp4scr8snlfaar1uv36l9k0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZbVkKnktq1wiXCIs61ol0kme-xZcF1To"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6690397156-fr5qm6eq6vp4scr8snlfaar1uv36l9k0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "6690397156-fllts4iagnla715rsgr3u971nj8aoedq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.neo"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
