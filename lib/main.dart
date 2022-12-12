@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:neo/screens/login_screen.dart';
 import 'package:neo/screens/signup_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -18,10 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Neo           Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Neo Demo',
       theme: ThemeData(
 
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.green,
       ),
       home:  MyHomePage(),
     );
@@ -38,6 +40,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return SignUpScreen();
+    return LogInScreen();
   }
 }
