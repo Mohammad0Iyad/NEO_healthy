@@ -21,8 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Neo Demo',
-      theme: ThemeData(
 
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.grey.shade300,
         primarySwatch: Colors.green,
       ),
       home:  MyHomePage(),
