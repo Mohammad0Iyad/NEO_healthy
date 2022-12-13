@@ -48,7 +48,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: TextFormField(
                     obscureText: _isObscure,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.password),
+                      icon: Icon(Icons.lock),
                       labelText: "Password",
                       hintText: "8 Character at lest ",
                       border: OutlineInputBorder(
@@ -103,7 +103,6 @@ class _LogInScreenState extends State<LogInScreen> {
               "or login usaing",
               style: TextStyle(color: Colors.green),
             ),
-
           ],
         ),
       ),
