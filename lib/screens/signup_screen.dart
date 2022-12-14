@@ -12,11 +12,17 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
 
   void dispse() {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+    passwordConfirmController.dispose();
+    nameController.dispose();
+    userNameController.dispose();
   }
 
   void signUpUser() async {
@@ -25,6 +31,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: passwordController.text,
         context: context);
   }
+
+
 
   @override
   Widget build(BuildContext context) {

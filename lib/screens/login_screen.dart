@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neo/screens/signup_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -17,21 +16,21 @@ class _LogInScreenState extends State<LogInScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const SizedBox(
+            SizedBox(
               height: 100,
             ),
             //ClipRRect(child: Image.asset('assets/images/logo0.png',height: 120,)),
-            const CircleAvatar(
+            CircleAvatar(
               backgroundImage: AssetImage('assets/images/logo0.png'),
               radius: 140,
             ),
-            const SizedBox(
+            SizedBox(
               height: 50,
             ),
             Container(
                 child: TextFormField(
                     decoration: InputDecoration(
-              icon: const Icon(Icons.email),
+              icon: Icon(Icons.email),
               labelText: "Email",
               hintText: "Example@Example.com",
               border: OutlineInputBorder(
@@ -42,14 +41,14 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
             ))),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
             Container(
                 child: TextFormField(
                     obscureText: _isObscure,
                     decoration: InputDecoration(
-                      icon: const Icon(Icons.lock),
+                      icon: Icon(Icons.lock),
                       labelText: "Password",
                       hintText: "8 Character at lest ",
                       border: OutlineInputBorder(
@@ -80,12 +79,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const SignUpScreen()),
-                    );
-
                     //signup screen
                   },
                 )
@@ -95,7 +88,7 @@ class _LogInScreenState extends State<LogInScreen> {
               onPressed: () {},
               child: Text(
                 "login",
-                style: const TextStyle(
+                style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     fontSize: 20),
@@ -103,10 +96,10 @@ class _LogInScreenState extends State<LogInScreen> {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightGreen, fixedSize: Size(320, 50)),
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
-            const Text(
+            Text(
               "or login usaing",
               style: TextStyle(color: Colors.green),
             ),
