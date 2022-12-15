@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:neo/screens/login_screen.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -12,7 +13,8 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController passwordConfirmController = TextEditingController();
+  final TextEditingController passwordConfirmController =
+      TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
 
@@ -31,8 +33,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: passwordController.text,
         context: context);
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +208,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 10,
               ),
-              const Text("Alredy a member ? Login "),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text('Alredy a member ?',
+                      style: TextStyle(color: Colors.grey)),
+                  TextButton(
+                    child: const Text(
+                      ' Login ',
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LogInScreen()),
+                      );
+                      //signup screen
+                    },
+                  )
+                ],
+              ),
               const SizedBox(
                 height: 10,
               ),
@@ -217,13 +239,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: MaterialButton(
                   onPressed: signUpUser
 
-                    //  () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => CompletSecreen()),
-                    // );
+                  //  () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => CompletSecreen()),
+                  // );
 
-                 // },
+                  // },
                   ,
                   height: 50,
                   minWidth: 350,

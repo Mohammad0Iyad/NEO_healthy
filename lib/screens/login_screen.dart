@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:neo/screens/signup_screen.dart';
+import 'package:neo/screens/splash/body.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
-
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _LogInScreenState extends State<LogInScreen> {
         password: passwordController.text,
         context: context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,13 +91,18 @@ class _LogInScreenState extends State<LogInScreen> {
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignUpScreen()),
+                    );
                     //signup screen
                   },
                 )
               ],
             ),
             ElevatedButton(
-              onPressed:(){},
+              onPressed: () {},
               child: Text(
                 "login",
                 style: TextStyle(
