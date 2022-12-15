@@ -139,6 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
                 child: TextFormField(
+                  controller: userNameController,
                   keyboardType: TextInputType.emailAddress,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -156,6 +157,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
                 child: TextFormField(
+                  controller: emailController,
                   keyboardType: TextInputType.emailAddress,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -173,6 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
                 child: TextFormField(
+                  controller: passwordController,
                   keyboardType: TextInputType.emailAddress,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -190,6 +193,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
                 child: TextFormField(
+                  controller: passwordConfirmController,
                   keyboardType: TextInputType.emailAddress,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -211,12 +215,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
               Center(
                 child: MaterialButton(
-                  onPressed: () {
+                  onPressed: signUpUser
+
+                    //  () {
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => CompletSecreen()),
                     // );
-                  },
+
+                 // },
+                  ,
                   height: 50,
                   minWidth: 350,
                   color: Colors.lightGreen,

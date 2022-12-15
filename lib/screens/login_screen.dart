@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:neo/services/firebase_auth_methods.dart';
+
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -9,7 +12,14 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   bool _isObscure = true;
-
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  void signUpUser() async {
+    FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
+        email: emailController.text,
+        password: passwordController.text,
+        context: context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +95,7 @@ class _LogInScreenState extends State<LogInScreen> {
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed:(){},
               child: Text(
                 "login",
                 style: TextStyle(
