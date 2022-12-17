@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:neo/screens/login_screen.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
+import 'package:validation_textformfield/validation_textformfield.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -17,6 +18,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
       TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
+
+  get txtPasswordCtrl => null;
+  get _isObscure => true;
+
+  get txtEmailCtrl => null;
 
   void dispse() {
     super.dispose();
@@ -139,7 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
                 child: TextFormField(
-                  controller: userNameController,
+                  // controller: userNameController,
                   keyboardType: TextInputType.emailAddress,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -156,46 +162,62 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
-                child: TextFormField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  autofocus: false,
+                child: EmailValidationTextField(
+                  whenTextFieldEmpty: "Please enter  email",
+                  validatorMassage: "Please enter valid email",
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0)),
                     labelText: 'Email',
-                    hintText: 'Email ',
+                    hintText: 'Enter Your Email ',
                     prefixIcon: const Icon(Icons.email_rounded),
                   ),
+                  textEditingController: txtEmailCtrl,
+                  onChanged: (value) {
+// print(value);
+                  },
                 ),
               ),
+
               const SizedBox(
                 height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
-                child: TextFormField(
-                  controller: passwordController,
-                  keyboardType: TextInputType.emailAddress,
-                  autofocus: false,
+                child: PassWordValidationTextFiled(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0)),
-                    labelText: 'Password',
+                    labelText: 'Passwordd',
                     hintText: 'Enter  password',
                     prefixIcon: const Icon(Icons.lock),
                   ),
+                  lineIndicator: false,
+                  passwordMinError: "Must be more than 5 charater",
+                  hasPasswordEmpty: "Password is Empty",
+                  passwordMaxError: "Password to long",
+                  passWordUpperCaseError:
+                      "at least one Uppercase (Capital)lette",
+                  passWordDigitsCaseError: "at least one digit",
+                  passwordLowercaseError: "at least one lowercase character",
+                  passWordSpecialCharacters: "at least one Special Characters",
+                  obscureText: _isObscure,
+                  scrollPadding: EdgeInsets.only(left: 60),
+                  onChanged: (value) {
+// print(value);
+                  },
+                  passTextEditingController: txtPasswordCtrl,
+                  passwordMaxLength: 10,
+                  passwordMinLength: 5,
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
+
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
-                child: TextFormField(
-                  controller: passwordConfirmController,
-                  keyboardType: TextInputType.emailAddress,
-                  autofocus: false,
+                child: PassWordValidationTextFiled(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0)),
@@ -203,6 +225,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hintText: 'Enter  password',
                     prefixIcon: const Icon(Icons.lock),
                   ),
+                  lineIndicator: false,
+                  passwordMinError: "Must be more than 5 charater",
+                  hasPasswordEmpty: "Password is Empty",
+                  passwordMaxError: "Password to long",
+                  passWordUpperCaseError:
+                      "at least one Uppercase (Capital)lette",
+                  passWordDigitsCaseError: "at least one digit",
+                  passwordLowercaseError: "at least one lowercase character",
+                  passWordSpecialCharacters: "at least one Special Characters",
+                  obscureText: _isObscure,
+                  scrollPadding: EdgeInsets.only(left: 60),
+                  onChanged: (value) {
+// print(value);
+                  },
+                  passTextEditingController: txtPasswordCtrl,
+                  passwordMaxLength: 10,
+                  passwordMinLength: 5,
                 ),
               ),
               const SizedBox(
