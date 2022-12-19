@@ -15,6 +15,7 @@ class _LogInScreenState extends State<LogInScreen> {
   bool _isObscure = true;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   void signUpUser() async {
     FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
         email: emailController.text,
@@ -41,25 +42,26 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             Container(
                 child: TextFormField(
+                    controller: emailController,
                     decoration: InputDecoration(
-              icon: Icon(Icons.email),
-              labelText: "Email",
-              hintText: "Example@Example.com",
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(50),
-                borderSide: const BorderSide(
-                  color: Colors.green,
-                  width: 1.0,
-                ),
-              ),
-            ))),
+                      icon: Icon(Icons.email),
+                      labelText: "Email",
+                      hintText: "Example@Example.com",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                        borderSide: const BorderSide(
+                          color: Colors.green,
+                          width: 1.0,
+                        ),
+                      ),
+                    ))),
             SizedBox(
               height: 10,
             ),
             Container(
                 child: TextFormField(
                     obscureText: _isObscure,
-
+                    controller: passwordController,
                     decoration: InputDecoration(
                       icon: Icon(Icons.lock),
                       labelText: "Password",
@@ -69,7 +71,6 @@ class _LogInScreenState extends State<LogInScreen> {
                         borderSide: const BorderSide(
                           color: Colors.green,
                           width: 1.0,
-
                         ),
                       ),
                       suffixIcon: IconButton(
@@ -175,7 +176,6 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
           ],
         ),
-
       ),
     );
   }
