@@ -41,6 +41,7 @@ dependencies:
   http: ^0.13.5
   firebase_auth: ^4.2.0
   validation_textformfield: ^2.2.5
+  google_sign_in: ^5.4.2
 
 dev_dependencies:
   flutter_test:

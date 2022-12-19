@@ -59,6 +59,7 @@ class _LogInScreenState extends State<LogInScreen> {
             Container(
                 child: TextFormField(
                     obscureText: _isObscure,
+
                     decoration: InputDecoration(
                       icon: Icon(Icons.lock),
                       labelText: "Password",
@@ -68,6 +69,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         borderSide: const BorderSide(
                           color: Colors.green,
                           width: 1.0,
+
                         ),
                       ),
                       suffixIcon: IconButton(
@@ -120,8 +122,60 @@ class _LogInScreenState extends State<LogInScreen> {
               "or login usaing",
               style: TextStyle(color: Colors.green),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20), // Image border
+                    child: SizedBox.fromSize(
+                        size: const Size.fromRadius(48), // Image radius
+                        child: Image.asset("assets/images/google.jpg",
+                            fit: BoxFit.cover)),
+                  ),
+                ),
+                const SizedBox(
+                  width: 30,
+                ),
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20), // Image border
+                    child: SizedBox.fromSize(
+                        size: const Size.fromRadius(48), // Image radius
+                        child: Image.asset("assets/images/face.png",
+                            fit: BoxFit.cover)),
+                  ),
+                ),
+                const SizedBox(
+                  width: 30,
+                ),
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20), // Image border
+                    child: SizedBox.fromSize(
+                        size: const Size.fromRadius(48), // Image radius
+                        child: Image.asset("assets/images/linked.png",
+                            fit: BoxFit.cover)),
+                  ),
+                ),
+                const SizedBox(
+                  width: 30,
+                ),
+              ],
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
           ],
         ),
+
       ),
     );
   }
