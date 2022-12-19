@@ -163,13 +163,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
                 child: EmailValidationTextField(
-
                   whenTextFieldEmpty: "Please enter  email",
                   validatorMassage: "Please enter valid email",
                   decoration: InputDecoration(
-
                     border: OutlineInputBorder(
-
                         borderRadius: BorderRadius.circular(32.0)),
                     labelText: 'Email',
                     hintText: 'Enter Your Email ',

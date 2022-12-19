@@ -42,6 +42,8 @@ dependencies:
   firebase_auth: ^4.2.0
   validation_textformfield: ^2.2.5
   google_sign_in: ^5.4.2
+  animated_notch_bottom_bar: ^0.0.6
+  google_fonts: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:neo/screens/home/home_page.dart';
 import 'package:neo/screens/login_screen.dart';
 import 'package:neo/screens/signup_screen.dart';
 import 'package:neo/screens/splash/body.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
   );
   runApp(MyApp());
 }
+
 // test Awf00
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade300,
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
+      home: HomePage(),
     );
   }
 }
