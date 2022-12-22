@@ -130,6 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   autofocus: false,
+                  controller: nameController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(32.0)),
@@ -145,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 17, right: 17),
                 child: TextFormField(
-                  // controller: userNameController,
+                  controller: userNameController,
                   keyboardType: TextInputType.emailAddress,
                   autofocus: false,
                   decoration: InputDecoration(
@@ -172,7 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hintText: 'Enter Your Email ',
                     prefixIcon: const Icon(Icons.email_rounded),
                   ),
-                  textEditingController: txtEmailCtrl,
+                  textEditingController: emailController,
                   onChanged: (value) {
 // print(value);
                   },
@@ -206,7 +207,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onChanged: (value) {
 // print(value);
                   },
-                  passTextEditingController: txtPasswordCtrl,
+                  passTextEditingController: passwordController,
                   passwordMaxLength: 10,
                   passwordMinLength: 5,
                 ),
@@ -239,7 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onChanged: (value) {
 // print(value);
                   },
-                  passTextEditingController: txtPasswordCtrl,
+                  passTextEditingController: passwordConfirmController,
                   passwordMaxLength: 10,
                   passwordMinLength: 5,
                 ),

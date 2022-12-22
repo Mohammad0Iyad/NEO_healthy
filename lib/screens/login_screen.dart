@@ -27,6 +27,7 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -120,7 +121,7 @@ class _LogInScreenState extends State<LogInScreen> {
               height: 10,
             ),
             Text(
-              "or login usaing",
+              "or login useing",
               style: TextStyle(color: Colors.green),
             ),
             Row(
@@ -130,11 +131,15 @@ class _LogInScreenState extends State<LogInScreen> {
                   height: 50,
                   width: 50,
                   child: ClipRRect(
+
                     borderRadius: BorderRadius.circular(20), // Image border
                     child: SizedBox.fromSize(
+
                         size: const Size.fromRadius(48), // Image radius
-                        child: Image.asset("assets/images/google.jpg",
-                            fit: BoxFit.cover)),
+                        child:ElevatedButton(onPressed: (){
+                          FirebaseAuthMethods(FirebaseAuth.instance).signInWithGoogle(context);
+                        },child: Image.asset("assets/images/google.jpg",
+                            fit: BoxFit.cover),) ),
                   ),
                 ),
                 const SizedBox(
