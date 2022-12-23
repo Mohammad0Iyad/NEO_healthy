@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
-import 'package:neo/screens/home/widgets/about_us.dart';
+import 'package:neo/screens/home/aboutus/about_us.dart';
+import 'package:neo/screens/home/gview/g_view.dart';
+import 'package:neo/screens/home/uploadpage/upload.dart';
 import 'package:neo/screens/home/widgets/drawepage/body.dart';
-import 'package:neo/screens/home/widgets/g_view.dart';
-import 'package:neo/screens/home/widgets/upload.dart';
 
 import 'widgets/appbarpage/body.dart';
 
@@ -48,12 +48,14 @@ class _HomePageState extends State<HomePage> {
       extendBody: true,
       bottomNavigationBar: (bottomBarPages.length <= maxCount)
           ? AnimatedNotchBottomBar(
+              blurOpacity: 0,
               pageController: _pageController,
               color: Colors.white,
-              showLabel: false,
-              notchColor: Colors.transparent,
+              showLabel: true,
+              notchColor: Colors.white,
               bottomBarItems: const [
                 BottomBarItem(
+                  itemLabel: "Home",
                   inActiveItem: Icon(
                     Icons.home,
                     color: Colors.black,
@@ -64,6 +66,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 BottomBarItem(
+                  itemLabel: "More",
                   inActiveItem: Icon(
                     Icons.list_alt_rounded,
                     color: Colors.black,
@@ -74,6 +77,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 BottomBarItem(
+                  itemLabel: "Profile",
                   inActiveItem: Icon(
                     Icons.person,
                     color: Colors.black,

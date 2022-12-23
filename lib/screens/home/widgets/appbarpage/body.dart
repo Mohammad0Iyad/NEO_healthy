@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'dart:io' show Platform;
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:neo/screens/login_screen.dart';
 
 class AppBarMain extends StatelessWidget implements PreferredSizeWidget {
   const AppBarMain({Key? key, this.title = 'NEO HEALTHY'}) : super(key: key);
@@ -14,7 +15,12 @@ class AppBarMain extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.logout_outlined),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LogInScreen()),
+            );
+          },
         ),
       ],
       title: Center(
