@@ -98,9 +98,10 @@ class _AboutUsState extends State<AboutUs> {
           Padding(
             padding: EdgeInsets.all(20),
             child: Text(
-              "An application that provides nutritional information from reliable sources and the latest scientific studies in a simple and easy way. The site also provides healthy recipes with accurate descriptions of nutrients and calories for each recipe. Through the application, you can also subscribe from all over the world with several highly experienced nutritionists in the field of nutrition. and diets",
+              "An application that provides nutritional information from reliable source and the latest scientific studies in a simple and easy way. The site also provides healthy recipes with accurate descriptions of nutrients and calories for each recipe. Through the application,you can also subscribe from all over the world with several highly experienced nutrition and diets.",
+              textAlign: TextAlign.justify, // to justify text
               style: GoogleFonts.roboto(),
-            ),
+            ) ,
           ),
           const Divider(),
           //information

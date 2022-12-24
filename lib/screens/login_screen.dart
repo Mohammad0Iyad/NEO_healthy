@@ -121,7 +121,7 @@ class _LogInScreenState extends State<LogInScreen> {
               height: 10,
             ),
             Text(
-              "or login useing",
+              "or login using",
               style: TextStyle(color: Colors.green),
             ),
             Row(
