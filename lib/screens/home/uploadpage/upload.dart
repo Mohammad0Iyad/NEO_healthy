@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neo/screens/home/uploadpage/cum_cardpdf.dart';
+import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
 
 class UploadProfile extends StatelessWidget {
   const UploadProfile({super.key});
@@ -66,8 +67,10 @@ class UploadProfile extends StatelessWidget {
                         MaterialStateProperty.all<Color>(Colors.green),
                   ),
                   onPressed: () {
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => EditProfile()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => EditProfile()),
+                    );
                   },
                   child: const Text(
                     "Edit Profile",
