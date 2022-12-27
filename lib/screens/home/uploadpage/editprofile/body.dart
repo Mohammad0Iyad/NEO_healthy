@@ -138,6 +138,22 @@ class EditProfile extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
+                  InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xff76B947),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      height: 50,
+                      width: double.infinity,
+                      child: Center(
+                          child: Text(
+                        "Update",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                  )
                 ]),
           ),
         ],
