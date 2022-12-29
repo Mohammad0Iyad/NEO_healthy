@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:neo/screens/signup_screen.dart';
+import 'package:neo/screens/users/signup_screen.dart';
 import 'package:neo/screens/splash/body.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
+
+import '../home/home_page.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -15,11 +17,12 @@ class _LogInScreenState extends State<LogInScreen> {
   bool _isObscure = true;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  void signUpUser() async {
-    FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
-        email: emailController.text,
-        password: passwordController.text,
+  void logInUser() async {
+    FirebaseAuthMethods(FirebaseAuth.instance).loginWithEmail(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
         context: context);
   }
 
@@ -106,7 +109,8 @@ class _LogInScreenState extends State<LogInScreen> {
               ],
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: logInUser,
+
               child: Text(
                 "login",
                 style: TextStyle(
@@ -131,15 +135,17 @@ class _LogInScreenState extends State<LogInScreen> {
                   height: 50,
                   width: 50,
                   child: ClipRRect(
-
                     borderRadius: BorderRadius.circular(20), // Image border
                     child: SizedBox.fromSize(
-
                         size: const Size.fromRadius(48), // Image radius
-                        child:ElevatedButton(onPressed: (){
-                          FirebaseAuthMethods(FirebaseAuth.instance).signInWithGoogle(context);
-                        },child: Image.asset("assets/images/google.jpg",
-                            fit: BoxFit.cover),) ),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            FirebaseAuthMethods(FirebaseAuth.instance)
+                                .signInWithGoogle(context);
+                          },
+                          child: Image.asset("assets/images/google.jpg",
+                              fit: BoxFit.cover),
+                        )),
                   ),
                 ),
                 const SizedBox(

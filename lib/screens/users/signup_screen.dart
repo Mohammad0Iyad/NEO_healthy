@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:neo/screens/login_screen.dart';
+
+import 'package:neo/screens/users/login_screen.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
 import 'package:validation_textformfield/validation_textformfield.dart';
 
@@ -15,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
 
@@ -33,11 +35,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
     userNameController.dispose();
   }
 
-  void signUpUser() async {
+  void signUpUser() async   {
     FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
-        email: emailController.text,
-        password: passwordController.text,
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+        name: nameController.text.trim(),
+        username: userNameController.text.trim(),
         context: context);
+
+
+
   }
 
   @override
@@ -116,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const Text(
                 "Or register with Email ",
                 style:
-                    TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(
@@ -198,7 +205,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hasPasswordEmpty: "Password is Empty",
                   passwordMaxError: "Password to long",
                   passWordUpperCaseError:
-                      "at least one Uppercase (Capital)lette",
+                  "at least one Uppercase (Capital)lette",
                   passWordDigitsCaseError: "at least one digit",
                   passwordLowercaseError: "at least one lowercase character",
                   passWordSpecialCharacters: "at least one Special Characters",
@@ -231,7 +238,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   hasPasswordEmpty: "Password is Empty",
                   passwordMaxError: "Password to long",
                   passWordUpperCaseError:
-                      "at least one Uppercase (Capital)lette",
+                  "at least one Uppercase (Capital)lette",
                   passWordDigitsCaseError: "at least one digit",
                   passwordLowercaseError: "at least one lowercase character",
                   passWordSpecialCharacters: "at least one Special Characters",
@@ -258,7 +265,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: const Text(
                       ' Login ',
                       style:
-                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                      TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     ),
                     onPressed: () {
                       Navigator.push(

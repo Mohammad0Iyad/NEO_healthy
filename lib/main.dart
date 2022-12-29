@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:neo/screens/home/home_page.dart';
-import 'package:neo/screens/login_screen.dart';
-import 'package:neo/screens/signup_screen.dart';
+import 'package:neo/screens/users/login_screen.dart';
+import 'package:neo/screens/users/signup_screen.dart';
 import 'package:neo/screens/splash/body.dart';
+import 'package:neo/services/firebase_auth_methods.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart';
@@ -25,10 +26,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Neo Demo',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey.shade300,
+        scaffoldBackgroundColor: Colors.white,
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
+      home: HomePage(),
     );
   }
 }
@@ -43,6 +44,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return HomePage();
+    return MultiProvider(providers: [
+
+    ],child: MaterialApp(home:SplashPage() ),);
   }
 }
