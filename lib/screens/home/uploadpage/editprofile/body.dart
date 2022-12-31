@@ -32,7 +32,7 @@ class EditProfile extends StatelessWidget {
                     ],
                     shape: BoxShape.circle,
                     image: const DecorationImage(
-                      image: ExactAssetImage('images/person.jpg'),
+                      image: ExactAssetImage('assets/images/person.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
