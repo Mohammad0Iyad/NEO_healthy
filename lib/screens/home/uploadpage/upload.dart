@@ -3,6 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neo/screens/home/uploadpage/cum_cardpdf.dart';
 import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
 
+import '../../../services/firebase_storge.dart';
+
+
 class UploadProfile extends StatelessWidget {
   const UploadProfile({super.key});
 
@@ -109,7 +112,7 @@ class UploadProfile extends StatelessWidget {
                 title: "Download Your Diet"),
           ),
           InkWell(
-            onTap: () {},
+            onTap:FirebaseStorageMethod().uploadFile,
             child: const CardPdf(
               imageee: 'assets/images/mid2.jpg',
               title: "Upload Medical Examinations",

@@ -8,20 +8,28 @@ import '../screens/home/home_page.dart';
 
 class FirebaseAuthMethods {
   final FirebaseAuth _auth;
-  FirebaseAuthMethods(this._auth);
 
+  FirebaseAuthMethods(this._auth);
 
   // Email SignUp
   Future<void> signUpWithEmail(
       {required String email,
       required String password,
-        required String name,
-        required String username,
-        required BuildContext context}) async {
+      required String name,
+      required String username,
+      required BuildContext context}) async {
     try {
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      await FirebaseFirestore.instance.collection('User').doc(userCredential.user?.uid).set({'email': email.trim(), 'password': password.trim(),'name': name.trim(),});
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      await FirebaseFirestore.instance
+          .collection('User')
+          .doc(userCredential.user?.uid)
+          .set({
+        'email': email.trim(),
+        'password': password.trim(),
+        'name': name.trim(),
+        'id': userCredential.user?.uid.trim()
+      });
 
       await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
@@ -44,7 +52,6 @@ class FirebaseAuthMethods {
       // User.getIdToken() instead.
       final uid = user.uid;
     }
-
   }
 
   // EmailVerification
@@ -63,10 +70,16 @@ class FirebaseAuthMethods {
       required String password,
       required BuildContext context}) async {
     try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       if (!_auth.currentUser!.emailVerified) {
         await sendEmailVerification(context);
-      }Navigator.push(context,MaterialPageRoute(builder: (context) => HomePage(),));
+      }
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ));
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
@@ -94,5 +107,4 @@ class FirebaseAuthMethods {
       showSnackBar(context, e.message!);
     }
   }
-
 }
