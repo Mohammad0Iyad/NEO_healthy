@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neo/screens/users/login_screen.dart';
 
 class AppBarMain extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarMain({Key? key, this.title = 'NEO HEALTHY'}) : super(key: key);
+  const AppBarMain({Key? key, this.title = 'Rand Clinic'}) : super(key: key);
   final String title;
   @override
   Widget build(BuildContext context) {

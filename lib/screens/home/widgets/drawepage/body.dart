@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
+import 'package:neo/screens/users/login_screen.dart';
 
 class Pagedrawer extends StatefulWidget {
   @override
@@ -30,7 +32,12 @@ class _PagedrawerState extends State<Pagedrawer> {
             style: TextStyle(fontSize: 20),
           ),
           trailing: const Icon(Icons.arrow_forward_ios_rounded),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => EditProfile()),
+            );
+          },
         ),
         const Divider(
           thickness: 1,
@@ -54,7 +61,12 @@ class _PagedrawerState extends State<Pagedrawer> {
             style: TextStyle(fontSize: 20),
           ),
           trailing: const Icon(Icons.arrow_forward_ios_rounded),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LogInScreen()),
+            );
+          },
         ),
         const Divider(
           thickness: 1,

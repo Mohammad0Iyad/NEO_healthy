@@ -13,12 +13,12 @@ class Cusabout extends StatelessWidget {
       color: Color.fromARGB(150, 118, 185, 71),
       clipBehavior: Clip.antiAlias,
       elevation: 3,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(35)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: InkWell(
         onTap: onTap,
         child: ListTile(
           title: Padding(
-            padding: const EdgeInsets.only(top: 50.0),
+            padding: const EdgeInsets.only(top: 60.0),
             child: Text(
               "$text",
               textAlign: TextAlign.center,

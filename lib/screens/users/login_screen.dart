@@ -34,15 +34,19 @@ class _LogInScreenState extends State<LogInScreen> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: 100,
+              height: 30,
             ),
             //ClipRRect(child: Image.asset('assets/images/logo0.png',height: 120,)),
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/images/logo0.png'),
-              radius: 140,
+            Center(
+              child: CircleAvatar(
+                backgroundImage: AssetImage(
+                  "assets/images/randlog.jpg",
+                ),
+                radius: 160,
+              ),
             ),
             SizedBox(
-              height: 50,
+              height: 30,
             ),
             Container(
                 child: TextFormField(
@@ -110,7 +114,6 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             ElevatedButton(
               onPressed: logInUser,
-
               child: Text(
                 "login",
                 style: TextStyle(
@@ -128,53 +131,34 @@ class _LogInScreenState extends State<LogInScreen> {
               "or login using",
               style: TextStyle(color: Colors.green),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(
+                  width: 50,
+                ),
                 SizedBox(
                   height: 50,
                   width: 50,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                        size: const Size.fromRadius(48), // Image radius
-                        child: ElevatedButton(
-                          onPressed: () {
-                            FirebaseAuthMethods(FirebaseAuth.instance)
-                                .signInWithGoogle(context);
-                          },
+                    child: InkWell(
+                      onTap: () {
+                        FirebaseAuthMethods(FirebaseAuth.instance)
+                            .signInWithGoogle(context);
+                      },
+                      child: SizedBox.fromSize(
+                          size: const Size.fromRadius(48), // Image radius
                           child: Image.asset("assets/images/google.jpg",
-                              fit: BoxFit.cover),
-                        )),
+                              fit: BoxFit.cover)),
+                    ),
                   ),
                 ),
                 const SizedBox(
                   width: 30,
-                ),
-                SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                        size: const Size.fromRadius(48), // Image radius
-                        child: Image.asset("assets/images/face.png",
-                            fit: BoxFit.cover)),
-                  ),
-                ),
-                const SizedBox(
-                  width: 30,
-                ),
-                SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20), // Image border
-                    child: SizedBox.fromSize(
-                        size: const Size.fromRadius(48), // Image radius
-                        child: Image.asset("assets/images/linked.png",
-                            fit: BoxFit.cover)),
-                  ),
                 ),
                 const SizedBox(
                   width: 30,

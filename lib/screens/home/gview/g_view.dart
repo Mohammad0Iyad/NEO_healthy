@@ -20,8 +20,8 @@ class GView extends StatelessWidget {
         ),
         GridView.count(
           crossAxisCount: 2,
-          mainAxisSpacing: 25,
-          crossAxisSpacing: 25,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
           children: [
             Cusabout(
               onTap: () {},
