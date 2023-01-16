@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'dart:io' show Platform;
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:neo/screens/users/login_screen.dart';
+import 'package:neo/screens/login_screen.dart';
 
 class AppBarMain extends StatelessWidget implements PreferredSizeWidget {
   const AppBarMain({Key? key, this.title = 'Rand Clinic'}) : super(key: key);

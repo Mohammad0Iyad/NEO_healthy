@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:neo/screens/users/signup_screen.dart';
+import 'package:neo/screens/signup_screen.dart';
 import 'package:neo/screens/splash/body.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
 
-import '../home/home_page.dart';
+import 'home/home_page.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -30,6 +30,7 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+
         padding: EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
