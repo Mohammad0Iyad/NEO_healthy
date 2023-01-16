@@ -1,13 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:neo/screens/home/home_page.dart';
-import 'package:neo/screens/users/login_screen.dart';
-import 'package:neo/screens/users/signup_screen.dart';
+import 'package:neo/screens/login_screen.dart';
+import 'package:neo/screens/signup_screen.dart';
 import 'package:neo/screens/splash/body.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,14 +23,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Neo Demo',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        primarySwatch: Colors.green,
+    return ChangeNotifierProvider(
+      create: (BuildContext context) { FirebaseAuthMethods(FirebaseAuth.instance); },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Neo Demo',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          primarySwatch: Colors.green,
+        ),
+        home: HomePage(),
       ),
-      home: HomePage(),
     );
   }
 }

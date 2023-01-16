@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:neo/screens/users/login_screen.dart';
+import 'package:neo/screens/login_screen.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
 import 'package:validation_textformfield/validation_textformfield.dart';
 
@@ -21,27 +21,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
 
-  get txtPasswordCtrl => null;
   get _isObscure => true;
-
-  get txtEmailCtrl => null;
-
-  void dispse() {
-    super.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    passwordConfirmController.dispose();
-    nameController.dispose();
-    userNameController.dispose();
-  }
+  //
+  // void dispse() {
+  //   super.dispose();
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  //   passwordConfirmController.dispose();
+  //   nameController.dispose();
+  //   userNameController.dispose();
+  // }
 
   void signUpUser() async {
     FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
         name: nameController.text.trim(),
-        username: userNameController.text.trim(),
-        context: context);
+          context: context);
   }
 
   @override

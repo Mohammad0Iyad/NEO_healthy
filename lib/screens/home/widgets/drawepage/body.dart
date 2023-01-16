@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
-import 'package:neo/screens/users/login_screen.dart';
+import 'package:neo/screens/login_screen.dart';
 
 class Pagedrawer extends StatefulWidget {
   @override

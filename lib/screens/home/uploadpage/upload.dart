@@ -1,15 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neo/screens/home/uploadpage/cum_cardpdf.dart';
 import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
+import 'package:neo/services/firebase_auth_methods.dart';
 
 import '../../../services/firebase_storge.dart';
 
-
-class UploadProfile extends StatelessWidget {
-  const UploadProfile({super.key});
-
+class UploadProfile extends StatefulWidget {
   @override
+  State<UploadProfile> createState() => _UploadProfileState();
+}
+
+class _UploadProfileState extends State<UploadProfile> {
+
+
+   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 30),
@@ -33,7 +39,8 @@ class UploadProfile extends StatelessWidget {
                     ],
                     shape: BoxShape.circle,
                     image: const DecorationImage(
-                      image: ExactAssetImage('assets/images/person1.jpg'),
+                      image:  ExactAssetImage('assets/images/person1.jpg'),
+                      
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -99,7 +106,7 @@ class UploadProfile extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: FirebaseStorageMethod().uploadFileRequiredChecks,
             child: const CardPdf(
               imageee: 'assets/images/ck3.jpeg',
               title: "Medical Required Checks",
@@ -112,7 +119,7 @@ class UploadProfile extends StatelessWidget {
                 title: "Download Your Diet"),
           ),
           InkWell(
-            onTap:FirebaseStorageMethod().uploadFile,
+            onTap: FirebaseStorageMethod().uploadFileMedicalExaminations,
             child: const CardPdf(
               imageee: 'assets/images/mid2.jpg',
               title: "Upload Medical Examinations",

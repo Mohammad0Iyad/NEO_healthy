@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> bottomBarPages = [
     const AboutUs(),
     const GView(),
-    const UploadProfile(),
+     UploadProfile(),
   ];
 
   @override

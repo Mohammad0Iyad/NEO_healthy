@@ -6,51 +6,39 @@ import 'package:neo/utils/showSnackBar.dart';
 
 import '../screens/home/home_page.dart';
 
-class FirebaseAuthMethods {
+class FirebaseAuthMethods extends ChangeNotifier{
   final FirebaseAuth _auth;
 
   FirebaseAuthMethods(this._auth);
 
-  // Email SignUp
+    // Email SignUp
   Future<void> signUpWithEmail(
       {required String email,
       required String password,
       required String name,
-      required String username,
       required BuildContext context}) async {
+    UserCredential userCredential =
+        await _auth.createUserWithEmailAndPassword(
+            email: email, password: password,);
+    final user = FirebaseAuth.instance.currentUser;
+    await userCredential.user?.updateEmail(email);
+    print("email:$email");
+    await userCredential.user?.updateDisplayName(name);
+    print("displayName:$name");
+    print(email + name);
     try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
       await FirebaseFirestore.instance
-          .collection('User')
-          .doc(userCredential.user?.uid)
+          .collection('Users')
+          .doc(user?.email)
           .set({
-        'email': email.trim(),
+        'email': user?.email,
         'password': password.trim(),
         'name': name.trim(),
-        'id': userCredential.user?.uid.trim()
+        'id':user?.uid,
       });
-
       await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
-      // await FirebaseFirestore.instance.collection('User').add({'email': email.trim(), 'password': password.trim()});
-
-    }
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      // Name, email address, and profile photo URL
-      final name = user.displayName;
-      final email = user.email;
-      final photoUrl = user.photoURL;
-
-      // Check if user's email is verified
-      final emailVerified = user.emailVerified;
-
-      // The user's ID, unique to the Firebase project. Do NOT use this value to
-      // authenticate with your backend server, if you have one. Use
-      // User.getIdToken() instead.
-      final uid = user.uid;
     }
   }
 
@@ -107,4 +95,14 @@ class FirebaseAuthMethods {
       showSnackBar(context, e.message!);
     }
   }
-}
+  Future<void> upDateemail({required String email,
+    required String name,
+    required String password,
+    required BuildContext context}) async {
+    final user = FirebaseAuth.instance.currentUser?.email;
+final users = FirebaseFirestore.instance.collection('users').get();
+
+
+  }
+  }
+
