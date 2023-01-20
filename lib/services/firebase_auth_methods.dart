@@ -13,13 +13,8 @@ class FirebaseAuthMethods extends ChangeNotifier{
 
     // Email SignUp
   Future<void> signUpWithEmail(
-      {required String email,
-      required String password,
-      required String name,
-      required BuildContext context}) async {
-    UserCredential userCredential =
-        await _auth.createUserWithEmailAndPassword(
-            email: email, password: password,);
+      {required String email, required String password, required String name, required BuildContext context}) async {
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password,);
     final user = FirebaseAuth.instance.currentUser;
     await userCredential.user?.updateEmail(email);
     print("email:$email");
@@ -35,6 +30,7 @@ class FirebaseAuthMethods extends ChangeNotifier{
         'password': password.trim(),
         'name': name.trim(),
         'id':user?.uid,
+        'profile photo':'https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/user-profile-icon.png',
       });
       await sendEmailVerification(context);
     } on FirebaseAuthException catch (e) {
@@ -95,14 +91,25 @@ class FirebaseAuthMethods extends ChangeNotifier{
       showSnackBar(context, e.message!);
     }
   }
-  Future<void> upDateemail({required String email,
+  Future<void> upDateName({
     required String name,
-    required String password,
     required BuildContext context}) async {
-    final user = FirebaseAuth.instance.currentUser?.email;
-final users = FirebaseFirestore.instance.collection('users').get();
+    final email = FirebaseAuth.instance.currentUser?.email;
+    final FirebaseAuth _auth = FirebaseAuth.instance;
 
-
+    User? currentUser = await _auth.currentUser;
+    currentUser?.updateDisplayName(name);
+    try {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(email)
+          .set({
+        'name': name,
+      });
+      await sendEmailVerification(context);
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
   }
   }
 

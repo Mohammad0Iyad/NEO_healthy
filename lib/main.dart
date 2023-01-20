@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       create: (BuildContext context) { FirebaseAuthMethods(FirebaseAuth.instance); },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Neooo Demo',
+        title: 'Neo Demo',
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
           primarySwatch: Colors.green,

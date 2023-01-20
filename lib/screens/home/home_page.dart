@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarMain(),
+      
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
@@ -55,17 +56,6 @@ class _HomePageState extends State<HomePage> {
               notchColor: Colors.white,
               bottomBarItems: const [
                 BottomBarItem(
-                  itemLabel: "Home",
-                  inActiveItem: Icon(
-                    Icons.home,
-                    color: Colors.black,
-                  ),
-                  activeItem: Icon(
-                    Icons.home_filled,
-                    color: Color.fromARGB(255, 134, 240, 105),
-                  ),
-                ),
-                BottomBarItem(
                   itemLabel: "More",
                   inActiveItem: Icon(
                     Icons.list_alt_rounded,
@@ -73,6 +63,17 @@ class _HomePageState extends State<HomePage> {
                   ),
                   activeItem: Icon(
                     Icons.list_rounded,
+                    color: Color.fromARGB(255, 134, 240, 105),
+                  ),
+                ),
+                BottomBarItem(
+                  itemLabel: "Home",
+                  inActiveItem: Icon(
+                    Icons.home,
+                    color: Colors.black,
+                  ),
+                  activeItem: Icon(
+                    Icons.home_filled,
                     color: Color.fromARGB(255, 134, 240, 105),
                   ),
                 ),

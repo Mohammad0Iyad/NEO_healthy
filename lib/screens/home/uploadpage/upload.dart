@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:neo/screens/home/uploadpage/cum_cardpdf.dart';
 import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
+import 'package:neo/screens/home/uploadpage/pdfViwer.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
 
 import '../../../services/firebase_storge.dart';
@@ -25,26 +26,52 @@ class _UploadProfileState extends State<UploadProfile> {
           Center(
             child: Stack(
               children: [
-                Container(
-                  width: 130,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 4, color: Colors.white),
-                    boxShadow: [
-                      BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(0.1),
-                      ),
-                    ],
-                    shape: BoxShape.circle,
-                    image: const DecorationImage(
-                      image:  ExactAssetImage('assets/images/person1.jpg'),
-                      
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+     StreamBuilder( stream: FirebaseStorageMethod().getsnap(),
+     builder: (context,  snapshot) {
+       if (!snapshot.hasData)
+         return Center(child: CircularProgressIndicator());
+       var image = snapshot.data!["profile photo"];
+       return  Container(
+         width: 130,
+         height: 130,
+         decoration: BoxDecoration(
+           border: Border.all(width: 4, color: Colors.white),
+           boxShadow: [
+             BoxShadow(
+               spreadRadius: 2,
+               blurRadius: 10,
+               color: Colors.black.withOpacity(0.1),
+             ),
+           ],
+           shape: BoxShape.circle,
+           image:  DecorationImage(
+             image:  NetworkImage('$image'),
+
+             fit: BoxFit.cover,
+           ),
+         ),
+       );
+     })
+     // Container(
+                //   width: 130,
+                //   height: 130,
+                //   decoration: BoxDecoration(
+                //     border: Border.all(width: 4, color: Colors.white),
+                //     boxShadow: [
+                //       BoxShadow(
+                //         spreadRadius: 2,
+                //         blurRadius: 10,
+                //         color: Colors.black.withOpacity(0.1),
+                //       ),
+                //     ],
+                //     shape: BoxShape.circle,
+                //     image: const DecorationImage(
+                //       image:  ExactAssetImage('assets/images/person1.jpg'),
+                //
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -113,7 +140,14 @@ class _UploadProfileState extends State<UploadProfile> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+     Navigator.push(
+     context,
+     MaterialPageRoute(
+     builder: (context) =>  pdfViwer()),
+     );
+     //signup screen
+     },
             child: const CardPdf(
                 imageee: 'assets/images/diet1.jpg',
                 title: "Download Your Diet"),

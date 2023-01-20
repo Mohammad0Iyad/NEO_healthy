@@ -5,9 +5,19 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 class FirebaseStorageMethod {
+  Future<String> downloadDiet() async {
+    var email = FirebaseAuth.instance.currentUser!.email;
+    var taskSnapshot = await FirebaseStorage.instance
+        .ref('uploads/$email/Diet/').getDownloadURL();
+
+    return taskSnapshot;
+
+  }
+
   Future<void> uploadFileRequiredChecks() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     var email = FirebaseAuth.instance.currentUser!.email;
@@ -25,8 +35,8 @@ class FirebaseStorageMethod {
       var downloadURL = await taskSnapshot.ref.getDownloadURL();
       var userCredential = FirebaseAuth.instance.currentUser!;
       await FirebaseFirestore.instance
-          .collection('User')
-          .doc(userCredential.uid)
+          .collection('Users')
+          .doc(userCredential.email)
           .set({'RequiredChecks $fileName': downloadURL},
               SetOptions(merge: true));
     }
@@ -49,8 +59,8 @@ class FirebaseStorageMethod {
       var downloadURL = await taskSnapshot.ref.getDownloadURL();
       var userCredential = FirebaseAuth.instance.currentUser!;
       await FirebaseFirestore.instance
-          .collection('User')
-          .doc(userCredential.uid)
+          .collection('Users')
+          .doc(userCredential.email)
           .set({'Medical Examinations $fileName': downloadURL},
               SetOptions(merge: true));
     }
@@ -58,7 +68,7 @@ class FirebaseStorageMethod {
 
   Future<void> setPictureProfile() async {
     final ImagePicker _picker = ImagePicker();
-   late String downloadURL;
+    late String downloadURL;
     var email = FirebaseAuth.instance.currentUser!.email;
     User userCredential = FirebaseAuth.instance.currentUser!;
     if (_picker != null) {
@@ -69,35 +79,37 @@ class FirebaseStorageMethod {
       var taskSnapshot = await FirebaseStorage.instance
           .ref('uploads/$email/photo/$fileName')
           .putFile(file);
-       downloadURL = await taskSnapshot.ref.getDownloadURL();
+      downloadURL = await taskSnapshot.ref.getDownloadURL();
       await FirebaseFirestore.instance
           .collection('Users')
           .doc(userCredential.email)
           .set({'profile photo': downloadURL},
               SetOptions(merge: true)).whenComplete(() => downloadURL);
-print(downloadURL);
+      print(downloadURL);
     }
-
-
   }
 
-  Future<String> getPictureProfile() async {
-    var email = FirebaseAuth.instance.currentUser!.email;
-    User userCredential = FirebaseAuth.instance.currentUser!;
-    var imageUrl1 = setPictureProfile;
-    print(imageUrl1);
-    var imageUrl='';
-    var imageGet = await FirebaseFirestore.instance
-        .collection('Users')
-        .doc(userCredential.email)
-        .get()
-        .then((value) {
-      imageUrl = value['profile photo'];
-      print(imageUrl);
-    });
-    return imageUrl;
+  DocumentReference instance = FirebaseFirestore.instance
+      .collection("Users")
+      .doc(FirebaseAuth.instance.currentUser!.email);
+
+  Stream<DocumentSnapshot> getsnap() {
+    return instance.snapshots();
   }
-}
+
+//
+// Future<void> getPictureProfile() async {
+//   var email = FirebaseAuth.instance.currentUser!.email;
+//   User userCredential = FirebaseAuth.instance.currentUser!;
+//   var imageUrl1 = setPictureProfile;
+//   print(imageUrl1);
+//
+//   var imageGet = await FirebaseFirestore.instance
+//       .collection('Users')
+//       .doc(userCredential.email)
+//       .get()
+//  .then((value) => value['profile photo']);
+// }
 //   Future<void> setPicture() async {
 //     var email = FirebaseAuth.instance.currentUser!.email;
 //     var userCredential = FirebaseAuth.instance.currentUser!;
@@ -116,3 +128,4 @@ print(downloadURL);
 //           (value) => print("Done: $value"),
 //     );
 // }
+}

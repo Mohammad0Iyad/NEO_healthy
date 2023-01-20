@@ -12,6 +12,7 @@ import 'package:neo/screens/home/widgets/appbarpage/body.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:neo/services/firebase_auth_methods.dart';
 import 'package:neo/services/firebase_storge.dart';
+
 class EditProfile extends StatefulWidget {
   const EditProfile({super.key});
 
@@ -24,33 +25,44 @@ class _EditProfileState extends State<EditProfile> {
 
   final TextEditingController passwordController = TextEditingController();
 
-  final TextEditingController passwordConfirmController =
-  TextEditingController();
-
   final TextEditingController nameController = TextEditingController();
+  User userCredential = FirebaseAuth.instance.currentUser!;
 
-  void updateUser() async {
-    FirebaseAuthMethods(FirebaseAuth.instance).upDateemail(
-        email: emailController.text,
-        name: nameController.text,
-        password: passwordController.text,
-        context: context);
+  void updateUserInfo() async{
 
+    try {
+      await FirebaseFirestore.instance
+          .collection('Users')
+          .doc(userCredential.email)
+          .update({
+        'name': nameController.text.trim(),
+        'password': passwordController.text.trim(),
+        'email': emailController.text.trim()
+      });
+    }
+    catch (e){print('no method');}
   }
-   var imageUrl = '' ;
-  image() async {
-       User userCredential = FirebaseAuth.instance.currentUser!;
 
-    var imageGet = await FirebaseFirestore.instance
-        .collection('Users')
-        .doc(userCredential.email)
-        .snapshots()
-       .listen((value) {
-       imageUrl = value['profile photo'];
-       print(imageUrl);
-    });
-    return imageUrl;
-        }
+
+
+  // var imageUrl = '';
+  //
+  // image() async {
+  //   User userCredential = FirebaseAuth.instance.currentUser!;
+  //
+  //   var imageGet = await FirebaseFirestore.instance
+  //       .collection('Users')
+  //       .doc(userCredential.email)
+  //       .snapshots()
+  //       .listen((value) {
+  //         if (value != null) {
+  //           imageUrl = value['profile photo'];
+  //         }else {
+  //           imageUrl = 'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=1024x1024&w=is&k=20&c=-mUWsTSENkugJ3qs5covpaj-bhYpxXY-v9RDpzsw504=';
+  //         }
+  //   });
+  //   return NetworkImage(imageUrl);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -64,26 +76,35 @@ class _EditProfileState extends State<EditProfile> {
           ),
           Center(
             child: Stack(
-              children: [
-                Container(
-                  width: 130,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 4, color: Colors.white),
-                    boxShadow: [
-                      BoxShadow(
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(0.1),
-                      ),
-                    ],
-                    shape: BoxShape.circle,
-                    image:  DecorationImage(
-                      image: NetworkImage(imageUrl),
-                      fit: BoxFit.cover,
+              children:
+              [
+
+                StreamBuilder( stream: FirebaseStorageMethod().getsnap(),
+            builder: (context,  snapshot) {
+              if (!snapshot.hasData)
+                return Center(child: CircularProgressIndicator());
+              var image=snapshot.data!["profile photo"];
+              return Container(
+                width: 130,
+                height: 130,
+                decoration: BoxDecoration(
+                  border: Border.all(width: 4, color: Colors.white),
+                  boxShadow: [
+                    BoxShadow(
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      color: Colors.black.withOpacity(0.1),
                     ),
+                  ],
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+
+                    image: NetworkImage('$image'),
+                    fit: BoxFit.cover,
                   ),
                 ),
+              );
+            },),
                 Positioned(
                   bottom: 0,
                   right: 0,
@@ -98,9 +119,7 @@ class _EditProfileState extends State<EditProfile> {
                         ),
                         color: Colors.green),
                     child: InkWell(
-                      onTap:
-                      image
-                      ,
+                      onTap: FirebaseStorageMethod().setPictureProfile,
                       child: const Icon(
                         Icons.edit,
                         color: Colors.white,
@@ -120,9 +139,15 @@ class _EditProfileState extends State<EditProfile> {
                   CustTextFormSign(
                     hint: "Name",
                     onChange: (value) {
-                      setState(() {
-                        nameController;
-                      });
+                      if (value !=null){
+                        nameController.text = value! ;
+                      }else if (value ==null){
+  FirebaseFirestore.instance
+        .collection('Users')
+        .doc(userCredential.email)
+        .set({'name':userCredential.email});
+  nameController.text = userCredential.email!;
+                      }
                     },
                     valid: (value) {
                       if (value!.isEmpty) {
@@ -137,16 +162,18 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   CustTextFormSign(
                     hint: "e-mail",
-                    onChange: (value) { setState(() {
-                      emailController;
-                    });},
+                    onChange: (value) {
+                      setState(() {
+                        emailController.text = value! ;
+                      });
+                    },
                     valid: (value) {
                       if (value!.isEmpty) {
                         return 'must be empty';
                       }
                       return null;
                     },
-                    prefIcon: const Icon(Icons.person),
+                    prefIcon: const Icon(Icons.email),
                   ),
                   SizedBox(
                     height: 10,
@@ -155,8 +182,9 @@ class _EditProfileState extends State<EditProfile> {
                     hint: "password",
                     onChange: (value) {
                       setState(() {
-                     passwordController;
-                    });},
+                        passwordController.text = value! ;
+                      });
+                    },
                     valid: (value) {
                       if (value!.isEmpty) {
                         return 'must be empty';
@@ -184,7 +212,6 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   CustTextFormSign(
                     hint: "Occupation",
-
                     onChange: (value) {},
                     valid: (value) {
                       if (value!.isEmpty) {
@@ -198,7 +225,7 @@ class _EditProfileState extends State<EditProfile> {
                     height: 10,
                   ),
                   InkWell(
-                    onTap: updateUser,
+                    onTap: updateUserInfo,
                     child: Container(
                       decoration: BoxDecoration(
                         color: Color(0xff76B947),
