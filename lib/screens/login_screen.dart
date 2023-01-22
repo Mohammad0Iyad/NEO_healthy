@@ -37,7 +37,6 @@ class _LogInScreenState extends State<LogInScreen> {
             SizedBox(
               height: 30,
             ),
-            //ClipRRect(child: Image.asset('assets/images/logo0.png',height: 120,)),
             Center(
               child: CircleAvatar(
                 backgroundImage: AssetImage(
@@ -53,9 +52,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 child: TextFormField(
                     controller: emailController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.email),
+                      prefixIcon: const Icon(Icons.email_outlined),
                       labelText: "Email",
-                      hintText: "Example@Example.com",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(50),
                         borderSide: const BorderSide(
@@ -64,7 +62,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         ),
                       ),
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
@@ -72,7 +70,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     obscureText: _isObscure,
                     controller: passwordController,
                     decoration: InputDecoration(
-                      icon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       labelText: "Password",
                       hintText: "8 Character at lest ",
                       border: OutlineInputBorder(
@@ -166,7 +164,6 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ],
             ),
-
             const SizedBox(
               height: 10,
             ),

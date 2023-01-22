@@ -17,7 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmController =
-      TextEditingController();
+  TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
 
@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
         name: nameController.text.trim(),
-          context: context);
+        context: context);
   }
 
   @override
@@ -62,59 +62,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 15,
                 ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Image border
-                        child: SizedBox.fromSize(
-                            size: const Size.fromRadius(48), // Image radius
-                            child: Image.asset("assets/images/google.jpg",
-                                fit: BoxFit.cover)),
-                      ),
+                SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20), // Image border
+                    child: InkWell(
+                      onTap: () {
+                        FirebaseAuthMethods(FirebaseAuth.instance)
+                            .signInWithGoogle(context);
+                      },
+                      child: SizedBox.fromSize(
+                          size: const Size.fromRadius(48), // Image radius
+                          child: Image.asset("assets/images/google.jpg",
+                              fit: BoxFit.cover)),
                     ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Image border
-                        child: SizedBox.fromSize(
-                            size: const Size.fromRadius(48), // Image radius
-                            child: Image.asset("assets/images/face.png",
-                                fit: BoxFit.cover)),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    SizedBox(
-                      height: 50,
-                      width: 50,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20), // Image border
-                        child: SizedBox.fromSize(
-                            size: const Size.fromRadius(48), // Image radius
-                            child: Image.asset("assets/images/linked.png",
-                                fit: BoxFit.cover)),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                  ],
+                  ),
                 ),
 
                 const SizedBox(
                   height: 15,
                 ),
                 const Text(
-                  "Or register with Email ",
+                  "Or Register With Email ",
                   style: TextStyle(
                       color: Colors.green, fontWeight: FontWeight.bold),
                 ),
@@ -198,11 +168,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hasPasswordEmpty: "Password is Empty",
                     passwordMaxError: "Password to long",
                     passWordUpperCaseError:
-                        "at least one Uppercase (Capital)lette",
+                    "at least one Uppercase (Capital)lette",
                     passWordDigitsCaseError: "at least one digit",
                     passwordLowercaseError: "at least one lowercase character",
                     passWordSpecialCharacters:
-                        "at least one Special Characters",
+                    "at least one Special Characters",
                     obscureText: _isObscure,
                     scrollPadding: EdgeInsets.only(left: 60),
                     onChanged: (value) {
@@ -232,11 +202,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hasPasswordEmpty: "Password is Empty",
                     passwordMaxError: "Password to long",
                     passWordUpperCaseError:
-                        "at least one Uppercase (Capital)lette",
+                    "at least one Uppercase (Capital)lette",
                     passWordDigitsCaseError: "at least one digit",
                     passwordLowercaseError: "at least one lowercase character",
                     passWordSpecialCharacters:
-                        "at least one Special Characters",
+                    "at least one Special Characters",
                     obscureText: _isObscure,
                     scrollPadding: EdgeInsets.only(left: 60),
                     onChanged: (value) {

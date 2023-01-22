@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:neo/screens/home/uploadpage/cum_cardpdf.dart';
 import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
 import 'package:neo/screens/home/uploadpage/pdfViwer.dart';
+import 'package:neo/screens/login_screen.dart';
 import 'package:neo/services/firebase_auth_methods.dart';
 
 import '../../../services/firebase_storge.dart';
@@ -144,7 +145,7 @@ class _UploadProfileState extends State<UploadProfile> {
      Navigator.push(
      context,
      MaterialPageRoute(
-     builder: (context) =>  pdfViwer()),
+     builder: (context) =>  LogInScreen()),
      );
      //signup screen
      },

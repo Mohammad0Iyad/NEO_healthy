@@ -15,13 +15,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _pageController = PageController(initialPage: 0);
+  final _pageController = PageController(initialPage: 1);
 
   int maxCount = 3;
   final List<Widget> bottomBarPages = [
     const AboutUs(),
     const GView(),
-     UploadProfile(),
+    UploadProfile(),
   ];
 
   @override
@@ -39,7 +39,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarMain(),
-      
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
@@ -49,55 +48,55 @@ class _HomePageState extends State<HomePage> {
       extendBody: true,
       bottomNavigationBar: (bottomBarPages.length <= maxCount)
           ? AnimatedNotchBottomBar(
-              blurOpacity: 0,
-              pageController: _pageController,
-              color: Colors.white,
-              showLabel: true,
-              notchColor: Colors.white,
-              bottomBarItems: const [
-                BottomBarItem(
-                  itemLabel: "More",
-                  inActiveItem: Icon(
-                    Icons.list_alt_rounded,
-                    color: Colors.black,
-                  ),
-                  activeItem: Icon(
-                    Icons.list_rounded,
-                    color: Color.fromARGB(255, 134, 240, 105),
-                  ),
-                ),
-                BottomBarItem(
-                  itemLabel: "Home",
-                  inActiveItem: Icon(
-                    Icons.home,
-                    color: Colors.black,
-                  ),
-                  activeItem: Icon(
-                    Icons.home_filled,
-                    color: Color.fromARGB(255, 134, 240, 105),
-                  ),
-                ),
-                BottomBarItem(
-                  itemLabel: "Profile",
-                  inActiveItem: Icon(
-                    Icons.person,
-                    color: Colors.black,
-                  ),
-                  activeItem: Icon(
-                    Icons.person,
-                    color: Color.fromARGB(255, 134, 240, 105),
-                  ),
-                ),
-              ],
-              onTap: (index) {
-                /// control your animation using page controller
-                _pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeIn,
-                );
-              },
-            )
+        blurOpacity: 0,
+        pageController: _pageController,
+        color: Colors.white,
+        showLabel: true,
+        notchColor: Colors.white,
+        bottomBarItems: const [
+          BottomBarItem(
+            itemLabel: "More",
+            inActiveItem: Icon(
+              Icons.list_alt_rounded,
+              color: Colors.black,
+            ),
+            activeItem: Icon(
+              Icons.list_rounded,
+              color: Color.fromARGB(255, 134, 240, 105),
+            ),
+          ),
+          BottomBarItem(
+            itemLabel: "Home",
+            inActiveItem: Icon(
+              Icons.home,
+              color: Colors.black,
+            ),
+            activeItem: Icon(
+              Icons.home_filled,
+              color: Color.fromARGB(255, 134, 240, 105),
+            ),
+          ),
+          BottomBarItem(
+            itemLabel: "Profile",
+            inActiveItem: Icon(
+              Icons.person,
+              color: Colors.black,
+            ),
+            activeItem: Icon(
+              Icons.person,
+              color: Color.fromARGB(255, 134, 240, 105),
+            ),
+          ),
+        ],
+        onTap: (index) {
+          /// control your animation using page controller
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn,
+          );
+        },
+      )
           : null,
       drawer: Pagedrawer(),
     );
