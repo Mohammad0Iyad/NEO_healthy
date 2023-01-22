@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neo/screens/home/uploadpage/editprofile/body.dart';
 import 'package:neo/screens/login_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class Pagedrawer extends StatefulWidget {
   @override
@@ -77,8 +79,11 @@ class _PagedrawerState extends State<Pagedrawer> {
             "Contact US",
             style: TextStyle(fontSize: 20),
           ),
-          trailing: const Icon(Icons.arrow_forward_ios_rounded),
-          onTap: () {},
+          trailing:  Icon(Icons.arrow_forward_ios_rounded),
+          onTap: () {
+
+            launch("https://randdisi.plymouthsoft.com//support.html");
+          },
         ),
         const Divider(
           thickness: 1,
